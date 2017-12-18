@@ -1,6 +1,6 @@
 # 3D Interactive World
 
-A web app that allows multiple users to send messages to each other and view each others' movements in a 3D canvas interface rendered using [three.js](https://threejs.org/).
+A web app that allows multiple users to send messages to each other and view each others' movements in a canvas interface rendered using [three.js](https://threejs.org/).
 
 ## Getting started 
 
@@ -18,6 +18,6 @@ Demetra Skl
 
 ## Acknowledgements
 
-The guide on how to implement a chat app from [socket.io](https://socket.io/get-started/chat/) was used as a reference.
-The image rendered on the floor element was obtained from [Github](https://github.com/mrdoob/three.js/tree/dev/examples/textures/terrain).
-The threex.keyboardstate.js library was also obtained from [Github](https://github.com/jeromeetienne/threex.keyboardstate/blob/master/threex.keyboardstate.js).
+* The guide on how to implement a chat app from [socket.io](https://socket.io/get-started/chat/) was used as a reference.
+* The image rendered on the floor element was obtained from [Github](https://github.com/mrdoob/three.js/tree/dev/examples/textures/terrain).
+* The threex.keyboardstate.js library was also obtained from [Github](https://github.com/jeromeetienne/threex.keyboardstate/blob/master/threex.keyboardstate.js).
