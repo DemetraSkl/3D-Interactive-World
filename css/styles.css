@@ -1,0 +1,49 @@
+body {
+    font: 13px Helvetica, Arial;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+form {
+    background: green;
+    padding: 3px;
+    bottom: 0;
+    width: 100%;
+}
+
+form input {
+    border: 0;
+    padding: 10px;
+    width: 90%;
+    margin-right: .5%;
+}
+
+form button {
+    width: 8%;
+    background: #eee;
+    border: none;
+    padding: 10px;
+}
+
+#messages {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#messages li {
+    padding: 5px 10px;
+}
+
+#messages li:nth-child(odd) {
+    background: #eee;
+}
+
+#c { 
+    width: 100%;
+ }
+
+canvas {
+    height: 100%;
+    border: 5px solid green;
+}
