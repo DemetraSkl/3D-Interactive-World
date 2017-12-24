@@ -100,7 +100,8 @@ io.on('connection', function(socket) {
 });
 
 // Make http server listen on port 3000.
-http.listen(3000, function() {
+var port = process.env.PORT || 3000;
+http.listen(port, function() {
     console.log("listening on *:3000");
 });
 
