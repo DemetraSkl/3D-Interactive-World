@@ -107,6 +107,16 @@ $(function() {
 
 
     // Chat Board
+    // Load messages written by users already logged in
+    socket.on('archived', function(msgs) {
+        if(msgs) {
+            for (i = 0; i < msgs.length; i++){
+                var msg = msgs[i];
+                $('#messages').append($('<li>').text(msg.name + " : " + msg.message));
+            }
+        }
+
+    });
     // When user types messsage, the server gets it as a chat message event
     $('form').submit(function() {
         socket.emit('chat message', [user.name, $('#m').val()]);

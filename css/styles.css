@@ -25,6 +25,12 @@ form button {
     padding: 10px;
 }
 
+ul {
+    height: 300px;
+    overflow: visible;
+    overflow: scroll;
+}
+
 #messages {
     list-style-type: none;
     margin: 0;

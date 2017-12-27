@@ -1,6 +1,6 @@
-var app = require('express')(); 
+var app = require('express')();
 
-var http = require('http').Server(app); 
+var http = require('http').Server(app);
 
 var io = require('socket.io')(http); // Init new socket.io instance by passing the http(the HTTP server) object.
 
@@ -48,8 +48,12 @@ var USERS = [];
 
 var allClients = [];
 
+var ALL_MESSAGES = [];
+
+
 io.on('connection', function(socket) {
     console.log('A user is connected');
+    ALL_MESSAGES.push({ "name": msg[0], "message": msg[1] });
 
     socket.on('chat message', function(msg) {
         io.emit('chat message', msg); // emit the event from the server to the rest of the users
@@ -59,14 +63,15 @@ io.on('connection', function(socket) {
     socket.on('new', function(user) {
         console.log("Added another user : " + user.name);
         USERS.push(user);
-        allClients.push({"client_id": user.idNum, "sock_id": socket.id});
-    })
+        allClients.push({ "client_id": user.idNum, "sock_id": socket.id });
+        socket.emit('archived', ALL_MESSAGES);
+    });
     // After sending the user ID, the frontend has created a User object
     // Receive full 'profile' of new user
     socket.on('user info', function(user) {
-        
-        for(i = 0; i < USERS.length; i++){
-            if (USERS[i].name == user.name){
+
+        for (i = 0; i < USERS.length; i++) {
+            if (USERS[i].name == user.name) {
                 USERS[i] = user;
             }
         }
@@ -78,18 +83,18 @@ io.on('connection', function(socket) {
 
 
     // Update other users' canvas when user disconnects
-    socket.on('disconnect', function(){
+    socket.on('disconnect', function() {
         console.log('A user disconnected');
         var deleteUserID;
-        for(i = 0; i < allClients.length; i++){
-            if (allClients[i].sock_id === socket.id){
+        for (i = 0; i < allClients.length; i++) {
+            if (allClients[i].sock_id === socket.id) {
                 deleteUserID = allClients[i].client_id;
-                io.emit('avatar disconnection', allClients[i].client_id); 
+                io.emit('avatar disconnection', allClients[i].client_id);
             }
         }
 
-        for(i = 0; i < USERS.length; i++){
-            if (USERS[i].idNum === deleteUserID){
+        for (i = 0; i < USERS.length; i++) {
+            if (USERS[i].idNum === deleteUserID) {
                 USERS.splice(i, 1);
                 io.emit('all users', USERS);
             }
@@ -104,5 +109,3 @@ var port = process.env.PORT || 3000;
 http.listen(port, function() {
     console.log("listening on *:3000");
 });
-
-
