@@ -53,9 +53,10 @@ var ALL_MESSAGES = [];
 
 io.on('connection', function(socket) {
     console.log('A user is connected');
-    ALL_MESSAGES.push({ "name": msg[0], "message": msg[1] });
+    
 
     socket.on('chat message', function(msg) {
+        ALL_MESSAGES.push({ "name": msg[0], "message": msg[1] });
         io.emit('chat message', msg); // emit the event from the server to the rest of the users
     });
 
